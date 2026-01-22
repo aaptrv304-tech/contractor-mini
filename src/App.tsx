@@ -28,18 +28,19 @@ function App() {
   return (
     <div
   style={{
-    width: '100%',
-    maxWidth: '500px', // ограничиваем ширину на больших экранах
-    margin: '0 auto',   // центрируем по горизонтали
+    // Сбрасываем всё
+    margin: 0,
+    padding: 0,
+    width: '100vw',        // ВСЯ ширина viewport
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px',
-    boxSizing: 'border-box', // важно!
+    boxSizing: 'border-box',
     fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
     color: '#000',
+    backgroundColor: (window as any).Telegram?.WebApp?.themeParams?.bg_color || '#ffffff',
   }}
 >
       {/* Иконка */}
@@ -68,7 +69,7 @@ function App() {
           textAlign: 'center', // ← на случай длинного названия
         }}
       >
-        ПОГОССТРОЙ2.01
+        ПОГОССТРОЙ 2.01
       </h1>
 
       <input
