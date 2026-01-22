@@ -4,21 +4,22 @@ function App() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
-  // Инициализация Telegram WebApp
   useEffect(() => {
     if ((window as any).Telegram?.WebApp) {
       const tg = (window as any).Telegram.WebApp;
       tg.ready();
       tg.expand();
-      // Опционально: установить тему как в Telegram
+
+      // Убираем стандартные отступы Telegram, если есть
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
       document.body.style.backgroundColor = tg.themeParams.bg_color || '#ffffff';
     }
   }, []);
 
   const handleLogin = () => {
     if (phone && password) {
-      alert(`Вход для ${phone}... (в реальности отправляем на бэкенд)`);
-      // Здесь будет fetch к твоему Go-бэкенду
+      alert(`Вход для ${phone}...`);
     } else {
       alert('Заполните все поля');
     }
@@ -27,17 +28,21 @@ function App() {
   return (
     <div
       style={{
-        minHeight: '100vh',
+        // Полный контроль над размером
+        minHeight: '100dvh', // ← КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: dvh вместо vh
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '20px',
-        fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+        boxSizing: 'border-box', // ← важно!
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         color: '#000',
+        backgroundColor: 'inherit',
       }}
     >
-      {/* Иконка (можно заменить на SVG позже) */}
+      {/* Иконка */}
       <div
         style={{
           width: 64,
@@ -55,12 +60,17 @@ function App() {
         🏗️
       </div>
 
-      {/* Надпись */}
-      <h1 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '32px' }}>
+      <h1
+        style={{
+          fontSize: '24px',
+          fontWeight: '700',
+          marginBottom: '32px',
+          textAlign: 'center', // ← на случай длинного названия
+        }}
+      >
         ПОГОССТРОЙ
       </h1>
 
-      {/* Поле телефона */}
       <input
         type="tel"
         placeholder="+7 (999) 123-45-67"
@@ -74,10 +84,10 @@ function App() {
           border: '1px solid #ccc',
           borderRadius: '8px',
           fontSize: '16px',
+          boxSizing: 'border-box', // ← чтобы padding не увеличивал ширину
         }}
       />
 
-      {/* Поле пароля */}
       <input
         type="password"
         placeholder="Пароль"
@@ -91,10 +101,10 @@ function App() {
           border: '1px solid #ccc',
           borderRadius: '8px',
           fontSize: '16px',
+          boxSizing: 'border-box',
         }}
       />
 
-      {/* Кнопка */}
       <button
         onClick={handleLogin}
         style={{
@@ -108,6 +118,7 @@ function App() {
           fontSize: '16px',
           fontWeight: '600',
           cursor: 'pointer',
+          boxSizing: 'border-box',
         }}
       >
         Зайти
