@@ -27,21 +27,21 @@ function App() {
 
   return (
     <div
-      style={{
-        // Полный контроль над размером
-        minHeight: '100dvh', // ← КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: dvh вместо vh
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        boxSizing: 'border-box', // ← важно!
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        color: '#000',
-        backgroundColor: 'inherit',
-      }}
-    >
+  style={{
+    width: '100%',
+    maxWidth: '500px', // ограничиваем ширину на больших экранах
+    margin: '0 auto',   // центрируем по горизонтали
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+    boxSizing: 'border-box', // важно!
+    fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+    color: '#000',
+  }}
+>
       {/* Иконка */}
       <div
         style={{
@@ -68,7 +68,7 @@ function App() {
           textAlign: 'center', // ← на случай длинного названия
         }}
       >
-        ПОГОССТРОЙ2
+        ПОГОССТРОЙ2.01
       </h1>
 
       <input
